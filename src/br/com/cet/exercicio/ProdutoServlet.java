@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.cet.exercicio.forms.CadastroProdutoForm;
 import br.com.cet.exercicio.util.ConnectionFactory;
-import br.com.cet.exercicio.util.SetupDatabase;
 
 @WebServlet("/produto")
 public class ProdutoServlet extends CrudBaseServlet {
@@ -27,7 +26,7 @@ public class ProdutoServlet extends CrudBaseServlet {
 		String descricao = request.getParameter("descricao");
 		String preco = request.getParameter("preco");
 		
-		// TODO: Precisa validar né cara ?!!
+		// TODO: Precisa validar nï¿½ cara ?!!
 		
 		Connection connection = new ConnectionFactory().getConnection();
 		try {
