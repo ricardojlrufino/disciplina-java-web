@@ -19,11 +19,15 @@ public abstract class CrudBaseServlet  extends HttpServlet  {
 		// Caso nao estaja logado... !!
 		if(logado == null || logado == false){
 			
+			System.out.println("Usuário tentando acessar página protegida: " + request.getRequestURI());
+			
 			PrintWriter writer = response.getWriter();
 			writer.print("<html>");
-			writer.print("Voce N tem permissao para acessar isso aqui !!!!");
+			writer.print("Efetue o <a href=\"login\">Login</a> para ter acesso !!!!");
 			writer.print("</html>");
 			writer.close();	
+			
+			sessao.setAttribute(Constantes.BEFORE_LOGIN_URL, request.getRequestURI());
 			
 		}else{
 			PrintWriter writer = response.getWriter();

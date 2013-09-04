@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.cet.exercicio.Constantes;
 import br.com.cet.exercicio.forms.LoginForm;
 
 /**
@@ -43,6 +44,8 @@ public class LoginServlet extends HttpServlet {
 			sessao.setAttribute("logado", true);
 			
 			System.out.println("Usuario logado !");
+			
+			response.sendRedirect((String)sessao.getAttribute(Constantes.BEFORE_LOGIN_URL));
 			
 		}else{
 			
