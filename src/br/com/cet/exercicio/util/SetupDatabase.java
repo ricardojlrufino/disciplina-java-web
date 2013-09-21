@@ -13,7 +13,7 @@ public class SetupDatabase {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-//		 create();
+		 create();
 		list();
 	}
 	

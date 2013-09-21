@@ -30,7 +30,7 @@ public class ListarProdutoServlet extends HttpServlet {
 		Connection connection = new ConnectionFactory().getConnection();
 		
 		try {
-			ResultSet resultSet = connection.createStatement().executeQuery("select * from Produto");
+			ResultSet resultSet = connection.createStatement().executeQuery("select * from Produto s");
 			List<Produto> lista = new ArrayList<Produto>();
 			
 			while(resultSet.next()){
@@ -54,6 +54,8 @@ public class ListarProdutoServlet extends HttpServlet {
 		}
 		
 		
+		
+	
 		req.getRequestDispatcher("jsp/produto/listar.jsp").forward(req, resp);
 	}
 	

@@ -1,18 +1,15 @@
 package br.com.cet.exercicio;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.cet.exercicio.dao.ProdutoDao;
 import br.com.cet.exercicio.forms.CadastroProdutoForm;
-import br.com.cet.exercicio.util.ConnectionFactory;
-import br.com.cet.exercicio.util.SetupDatabase;
+import br.com.cet.exercicio.modelo.Produto;
 
 @WebServlet("/produto")
 public class ProdutoServlet extends CrudBaseServlet {
@@ -21,23 +18,20 @@ public class ProdutoServlet extends CrudBaseServlet {
     public ProdutoServlet() {
         super();
     }
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String descricao = request.getParameter("descricao");
 		String preco = request.getParameter("preco");
+		String categoria = request.getParameter("categoria");
 		
-		// TODO: Precisa validar né cara ?!!
+		Produto produto = new Produto();
+		produto.setDescricao(descricao);
+		produto.setPreco(preco);
 		
-		Connection connection = new ConnectionFactory().getConnection();
-		try {
-			PreparedStatement insert = connection.prepareStatement("INSERT INTO Produto values (null, ?,?)");
-			insert.setString(1, descricao);
-			insert.setString(2, preco);
-			insert.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		ProdutoDao dao = new ProdutoDao();
+		dao.inserir(produto);
+	
 	}
 
 	protected String createForm(){
