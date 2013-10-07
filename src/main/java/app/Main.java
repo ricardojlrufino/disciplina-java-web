@@ -11,8 +11,10 @@ public class Main {
 	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("myapp");
 	    EntityManager entityManager = factory.createEntityManager();
 	    
+	    entityManager.getTransaction().begin();
 	    Departamento departamento = new Departamento("Desenvolvimento");
 	    entityManager.persist(departamento);
+	    entityManager.getTransaction().commit();
 	    
 	    factory.close();
 	  }
